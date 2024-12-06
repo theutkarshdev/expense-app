@@ -21,9 +21,15 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getSession();
+  const userId = session?.userId;
+  const isNewUser = session?.isNewUser;
 
-  if (session) {
-    redirect("/dashboard");
+  if (userId) {
+    if (isNewUser) {
+      redirect("/auth/signup");
+    } else {
+      redirect("/dashboard");
+    }
   }
 
   return (
