@@ -34,7 +34,7 @@ export async function POST(request) {
       isNewUser = true;
     }
 
-    await createSession(user._id, !isNewUser);
+    await createSession(user._id, isNewUser);
     // Remove the OTP from the database
     await Otp.deleteOne({ email, otp, orderId });
 

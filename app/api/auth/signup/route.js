@@ -1,5 +1,5 @@
 import connectToDatabase from "@/lib/dbConnect";
-import { decrypt } from "@/lib/session";
+import { decrypt, updateSignUpSession } from "@/lib/session";
 import User from "@/models/User";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
@@ -30,7 +30,7 @@ export async function POST(request) {
     } else {
       return NextResponse.json({ message: "User already has a name set" }, { status: 400 });
     }
-
+    await updateSignUpSession();
     return NextResponse.json({ message: "Signup successful" });
   } catch (error) {
     console.error("Error processing signup:", error);
