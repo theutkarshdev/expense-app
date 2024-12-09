@@ -41,7 +41,7 @@ export async function POST(request) {
       to: email,
       subject: "Your OTP Code and Order ID",
       text: `Your OTP code is: ${otp}\nYour Order ID is: ${orderId}`,
-      html: `<p>Your OTP code is: <strong>${otp}</strong></p><p>Your Order ID is: <strong>${orderId}</strong></p>`,
+      html: `<p>Your OTP code is: <strong>${otp}</strong></p>`,
     };
 
     // Send the email
