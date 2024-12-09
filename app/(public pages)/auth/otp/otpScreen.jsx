@@ -66,7 +66,7 @@ const OTPScreen = () => {
   }
 
   return (
-    <div className="h-dvh bg-white px-3 flex flex-col justify-center">
+    <div className="h-full bg-white px-3 flex flex-col justify-center">
       <Image width={300} height={300} className="mx-auto" src={Illustration} priority alt="Onboarding Illustration" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

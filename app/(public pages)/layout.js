@@ -17,10 +17,8 @@ export default async function RootLayout({ children }) {
   }
 
   return (
-    <section className="w-full max-w-screen-sm mx-auto bg-white flex flex-col h-dvh">
-      <Suspense fallback={<Loader />}>
-        <div className="flex-grow overflow-y-auto">{children}</div>
-      </Suspense>
+    <section className="h-dvh w-full">
+      <Suspense fallback={<Loader />}>{children}</Suspense>
     </section>
   );
 }
