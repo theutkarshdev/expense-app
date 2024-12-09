@@ -54,7 +54,7 @@ const OTPScreen = () => {
 
       const { isNewUser } = await response.json();
       if (isNewUser) {
-        router.push("/auth/signup");
+        router.push("/account/signup");
       } else {
         router.push("/dashboard");
       }

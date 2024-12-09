@@ -1,7 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/lib/session";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+  const userId = session?.userId;
+
+  if (userId) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="w-full bg-white flex flex-col justify-center px-3">
       <h1 className="text-5xl font-bold text-center mb-4">Home</h1>

@@ -1,18 +1,7 @@
-import localFont from "next/font/local";
-import "../globals.css";
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
-
-const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Loader from "@/components/common/loader";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "X-Pense",
@@ -21,22 +10,17 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getSession();
-  const userId = session?.userId;
-  const isNewUser = session?.isNewUser;
 
-  if (userId) {
-    if (isNewUser) {
-      redirect("/auth/signup");
-    } else {
-      redirect("/dashboard");
-    }
+  // Redirect to dashboard if the user is authenticated and not new
+  if (session?.userId && !session?.isNewUser) {
+    redirect("/dashboard");
   }
 
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main className="w-full max-w-screen-sm mx-auto bg-slate-50">{children}</main>
-      </body>
-    </html>
+    <section className="w-full max-w-screen-sm mx-auto bg-white flex flex-col h-dvh">
+      <Suspense fallback={<Loader />}>
+        <div className="flex-grow overflow-y-auto">{children}</div>
+      </Suspense>
+    </section>
   );
 }

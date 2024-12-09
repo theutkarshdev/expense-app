@@ -11,9 +11,5 @@ export default async function SignupPage() {
     redirect("/dashboard");
   }
 
-  if (!isNewUser && !userId) {
-    redirect("/auth/login");
-  }
-
   return <SignupScreen />;
 }

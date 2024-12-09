@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NavBarBottom = () => {
   return (
-    <div className="w-full px-3 py-2 border-t bg-white flex justify-evenly rounded-t-2xl overflow-hidden">
+    <div className="w-full p-3 border-t bg-white flex justify-evenly rounded-t-2xl overflow-hidden">
       <div>
         <Link href={"/dashboard"}>
           <HomeIcon />
